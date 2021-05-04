@@ -27,7 +27,7 @@ bot.on('message', async event => {
         let name = $(this).$('a').text()
         for (let n of name) {
           if (n.includes(event.message)) {
-            reply += name + '\n' + $(this).parents().$('.runtime').text()
+            reply += n + '\n' + $(this).parents().$('.runtime').text()
           }
         }
         // reply += $(this).text() + '\n'
