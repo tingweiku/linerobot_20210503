@@ -1,6 +1,6 @@
 {
   "type": "flex",
-  "altText": "大獵逃 Hunted 時刻表",
+  "altText": "一級任務 Voyagers 時刻表",
   "contents": {
     "type": "carousel",
     "contents": [
@@ -8,7 +8,7 @@
         "type": "bubble",
         "hero": {
           "type": "image",
-          "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+          "url": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
           "size": "full",
           "aspectRatio": "20:13",
           "aspectMode": "cover",
@@ -23,7 +23,7 @@
           "contents": [
             {
               "type": "text",
-              "text": "大獵逃 Hunted ",
+              "text": "一級任務 Voyagers ",
               "weight": "bold",
               "size": "xl"
             },
@@ -40,7 +40,7 @@
                   "contents": [
                     {
                       "type": "text",
-                      "text": "上映日期：4/30/2021 ",
+                      "text": "上映日期：4/29/2021 ",
                       "wrap": true,
                       "color": "#666666",
                       "size": "sm",
@@ -55,7 +55,7 @@
                   "contents": [
                     {
                       "type": "text",
-                      "text": "片長：87分 ",
+                      "text": "片長：107分 ",
                       "wrap": true,
                       "color": "#666666",
                       "size": "sm",
@@ -79,7 +79,7 @@
               "action": {
                 "type": "uri",
                 "label": "時刻表查詢",
-                "uri": "http://www.atmovies.com.tw/movie/fhen10011228/"
+                "uri": "http://www.atmovies.com.tw/movie/fven49664108/"
               }
             },
             {

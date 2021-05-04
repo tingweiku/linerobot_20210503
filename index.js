@@ -41,7 +41,8 @@ bot.on('message', async event => {
             type: 'bubble',
             hero: {
               type: 'image',
-              url: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png',
+              url:
+                'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
               size: 'full',
               aspectRatio: '20:13',
               aspectMode: 'cover',
@@ -138,11 +139,8 @@ bot.on('message', async event => {
           console.log(message)
         }
       })
-      // for (const match of matches) {
-      //   const response2 = await axios.get('http://www.atmovies.com.tw/movie/now/1/')
-      // }
-      // console.log(reply)
-      // event.reply(reply)
+      console.log(reply)
+      event.reply(reply)
     } catch (error) {
       console.log(error)
       event.reply('發生錯誤')
