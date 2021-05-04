@@ -20,17 +20,16 @@ bot.listen('/', process.env.PORT, () => {
 bot.on('message', async event => {
   if (event.message.type === 'text') {
     try {
-      const response = await axios.get('http://www.atmovies.com.tw/movie/now/')
+      const response = await axios.get('http://www.atmovies.com.tw/movie/now/1/')
       const $ = cheerio.load(response.data)
       let reply = ''
-      $('.filmListPA li a').each(function () {
-        let name = $('a').text()
+      $('.filmList .filmTitle').each(function () {
+        let name = $('.filmTitle a').text()
         for (let n of name) {
-          if (n === event.message) {
-            reply += $(this).text() + $(this).next().text() + '\n'
+          if (n.includes(event.message)) {
+            reply += name + $('.filmList .runtime')
           }
         }
-        // reply += $(this).text() + '\n'
       })
       console.log(reply)
       event.reply(reply)
