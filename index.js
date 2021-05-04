@@ -23,9 +23,12 @@ bot.on('message', async event => {
     try {
       const response = await axios.get('http://www.atmovies.com.tw/movie/now/1/')
       const response2 = await axios.get('http://www.atmovies.com.tw/movie/movie_now_page2.html')
-      const $ = cheerio.load(response.data)
+
+      const html = response.data + response2.data
+      const $ = cheerio.load(html)
+
       const matches = []
-      let reply = ''
+      const reply = ''
       $('.filmTitle').each(function () {
         const name = $(this).find('a').text()
         const url = $(this).find('a').attr('href')
@@ -35,14 +38,14 @@ bot.on('message', async event => {
           const movieUrl = matches[0].url.split('/')[2]
           const movieTime = matches[0].runTime.split(' ')[2]
           const movieDate = matches[0].runTime.split(' ')[3]
-          console.log(movieDate)
+          // console.log(movieDate)
 
           const flex = {
             type: 'bubble',
             hero: {
               type: 'image',
               url:
-                'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+                'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bW92aWV8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
               size: 'full',
               aspectRatio: '20:13',
               aspectMode: 'cover',
@@ -136,7 +139,7 @@ bot.on('message', async event => {
 
           fs.writeFileSync('f.json', JSON.stringify(message, null, 2))
           event.reply(message)
-          console.log(message)
+          // console.log(message)
         }
       })
       console.log(reply)
