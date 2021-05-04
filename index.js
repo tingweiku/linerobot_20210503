@@ -24,12 +24,13 @@ bot.on('message', async event => {
       const $ = cheerio.load(response.data)
       let reply = ''
       $('.filmList .filmTitle').each(function () {
-        let name = $('.filmTitle a').text()
+        let name = $(this).$('a').text()
         for (let n of name) {
           if (n.includes(event.message)) {
-            reply += name + $('.filmList .runtime')
+            reply += name + '\n' + $(this).parents().$('.runtime').text()
           }
         }
+        // reply += $(this).text() + '\n'
       })
       console.log(reply)
       event.reply(reply)
