@@ -1,6 +1,6 @@
 {
   "type": "flex",
-  "altText": "迴憶 Recalled 時刻表",
+  "altText": "大獵逃 Hunted 時刻表",
   "contents": {
     "type": "carousel",
     "contents": [
@@ -23,7 +23,7 @@
           "contents": [
             {
               "type": "text",
-              "text": "一級任務 Voyagers",
+              "text": "大獵逃 Hunted ",
               "weight": "bold",
               "size": "xl"
             },
@@ -40,7 +40,7 @@
                   "contents": [
                     {
                       "type": "text",
-                      "text": "上映日期：4/29/2021",
+                      "text": "上映日期：4/30/2021 ",
                       "wrap": true,
                       "color": "#666666",
                       "size": "sm",
@@ -55,7 +55,7 @@
                   "contents": [
                     {
                       "type": "text",
-                      "text": "片長：107分",
+                      "text": "片長：87分 ",
                       "wrap": true,
                       "color": "#666666",
                       "size": "sm",
@@ -79,7 +79,7 @@
               "action": {
                 "type": "uri",
                 "label": "時刻表查詢",
-                "uri": "http://www.atmovies.com.tw/movie/fven49664108/"
+                "uri": "http://www.atmovies.com.tw/movie/fhen10011228/"
               }
             },
             {

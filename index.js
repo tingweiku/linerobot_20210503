@@ -18,107 +18,111 @@ bot.listen('/', process.env.PORT, () => {
   console.log('機器人啟動')
 })
 
-const flex = {
-  type: 'bubble',
-  hero: {
-    type: 'image',
-    url: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png',
-    size: 'full',
-    aspectRatio: '20:13',
-    aspectMode: 'cover',
-    action: {
-      type: 'uri',
-      uri: 'http://linecorp.com/'
-    }
-  },
-  body: {
-    type: 'box',
-    layout: 'vertical',
-    contents: [
-      {
-        type: 'text',
-        text: '一級任務 Voyagers',
-        weight: 'bold',
-        size: 'xl'
-      },
-      {
-        type: 'box',
-        layout: 'vertical',
-        margin: 'lg',
-        spacing: 'sm',
-        contents: [
-          {
-            type: 'box',
-            layout: 'baseline',
-            spacing: 'sm',
-            contents: [
-              {
-                type: 'text',
-                text: '上映日期：4/29/2021',
-                wrap: true,
-                color: '#666666',
-                size: 'sm',
-                flex: 5
-              }
-            ]
-          },
-          {
-            type: 'box',
-            layout: 'baseline',
-            spacing: 'sm',
-            contents: [
-              {
-                type: 'text',
-                text: '片長：107分',
-                wrap: true,
-                color: '#666666',
-                size: 'sm',
-                flex: 5
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  footer: {
-    type: 'box',
-    layout: 'vertical',
-    spacing: 'sm',
-    contents: [
-      {
-        type: 'button',
-        style: 'link',
-        height: 'sm',
-        action: {
-          type: 'uri',
-          label: '時刻表查詢',
-          uri: 'http://www.atmovies.com.tw/movie/fven49664108/'
-        }
-      },
-      {
-        type: 'spacer',
-        size: 'sm'
-      }
-    ],
-    flex: 0
-  }
-}
-
 bot.on('message', async event => {
   if (event.message.type === 'text') {
     try {
       const response = await axios.get('http://www.atmovies.com.tw/movie/now/1/')
+      const response2 = await axios.get('http://www.atmovies.com.tw/movie/movie_now_page2.html')
       const $ = cheerio.load(response.data)
       const matches = []
       let reply = ''
       $('.filmTitle').each(function () {
         const name = $(this).find('a').text()
         const url = $(this).find('a').attr('href')
+        const runTime = $(this).nextAll('.runtime').text()
         if (name.trim().toLowerCase().includes(event.message.text)) {
-          matches.push({ name, url })
+          matches.push({ name, url, runTime })
           const movieUrl = matches[0].url.split('/')[2]
-          // console.log(movieUrl)
+          const movieTime = matches[0].runTime.split(' ')[2]
+          const movieDate = matches[0].runTime.split(' ')[3]
+          console.log(movieDate)
+
+          const flex = {
+            type: 'bubble',
+            hero: {
+              type: 'image',
+              url: 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png',
+              size: 'full',
+              aspectRatio: '20:13',
+              aspectMode: 'cover',
+              action: {
+                type: 'uri',
+                uri: 'http://linecorp.com/'
+              }
+            },
+            body: {
+              type: 'box',
+              layout: 'vertical',
+              contents: [
+                {
+                  type: 'text',
+                  text: `${matches[0].name}`,
+                  weight: 'bold',
+                  size: 'xl'
+                },
+                {
+                  type: 'box',
+                  layout: 'vertical',
+                  margin: 'lg',
+                  spacing: 'sm',
+                  contents: [
+                    {
+                      type: 'box',
+                      layout: 'baseline',
+                      spacing: 'sm',
+                      contents: [
+                        {
+                          type: 'text',
+                          text: `${movieDate}`,
+                          wrap: true,
+                          color: '#666666',
+                          size: 'sm',
+                          flex: 5
+                        }
+                      ]
+                    },
+                    {
+                      type: 'box',
+                      layout: 'baseline',
+                      spacing: 'sm',
+                      contents: [
+                        {
+                          type: 'text',
+                          text: `${movieTime}`,
+                          wrap: true,
+                          color: '#666666',
+                          size: 'sm',
+                          flex: 5
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            footer: {
+              type: 'box',
+              layout: 'vertical',
+              spacing: 'sm',
+              contents: [
+                {
+                  type: 'button',
+                  style: 'link',
+                  height: 'sm',
+                  action: {
+                    type: 'uri',
+                    label: '時刻表查詢',
+                    uri: `http://www.atmovies.com.tw/movie/${movieUrl}/`
+                  }
+                },
+                {
+                  type: 'spacer',
+                  size: 'sm'
+                }
+              ],
+              flex: 0
+            }
+          }
 
           const message = {
             type: 'flex',
