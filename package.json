@@ -15,6 +15,7 @@
     "axios": "^0.21.1",
     "cheerio": "^1.0.0-rc.6",
     "dotenv": "^8.2.0",
+    "fs": "*",
     "linebot": "^1.6.1",
     "node-schedule": "^2.0.0"
   },
