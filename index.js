@@ -33,19 +33,21 @@ bot.on('message', async event => {
         const name = $(this).find('a').text()
         const url = $(this).find('a').attr('href')
         const runTime = $(this).nextAll('.runtime').text()
+        const img = $(this).next().find('img').attr('src')
         if (name.trim().toLowerCase().includes(event.message.text)) {
-          matches.push({ name, url, runTime })
+          matches.push({ name, url, runTime, img })
           const movieUrl = matches[0].url.split('/')[2]
           const movieTime = matches[0].runTime.split(' ')[2]
           const movieDate = matches[0].runTime.split(' ')[3]
+          const movieImg = matches[0].img
+          console.log(movieImg)
           // console.log(movieDate)
 
           const flex = {
             type: 'bubble',
             hero: {
               type: 'image',
-              url:
-                'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bW92aWV8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+              url: `${movieImg}`,
               size: 'full',
               aspectRatio: '20:13',
               aspectMode: 'cover',
