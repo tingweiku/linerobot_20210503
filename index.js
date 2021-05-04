@@ -22,19 +22,24 @@ bot.on('message', async event => {
     try {
       const response = await axios.get('http://www.atmovies.com.tw/movie/now/1/')
       const $ = cheerio.load(response.data)
+      const matches = []
       let reply = ''
-      $('.filmList .filmTitle').each(function () {
-        let name = $(this).$('a').text()
-        for (let n of name) {
-          if (n.includes(event.message)) {
-            reply += n + '\n' + $(this).parents().$('.runtime').text()
-          }
+      $('.filmTitle').each(function () {
+        const name = $(this).find('a').text()
+        const url = $(this).find('a').attr('href')
+        if (name.trim().toLowerCase().includes(event.message.text)) {
+          matches.push({ name, url })
+          const movieUrl = matches[0].url.split('/')[2]
+          // console.log(movieUrl)
         }
-        // reply += $(this).text() + '\n'
       })
+      // for (const match of matches) {
+      //   const response2 = await axios.get('http://www.atmovies.com.tw/movie/now/1/')
+      // }
       console.log(reply)
       event.reply(reply)
     } catch (error) {
+      console.log(error)
       event.reply('發生錯誤')
     }
   }
