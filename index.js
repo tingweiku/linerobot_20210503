@@ -21,35 +21,54 @@ bot.listen('/', process.env.PORT, () => {
 bot.on('message', async event => {
   if (event.message.type === 'text') {
     try {
-      const response = await axios.get('http://www.atmovies.com.tw/movie/now/1/')
-      const response2 = await axios.get('http://www.atmovies.com.tw/movie/movie_now_page2.html')
+      const response = await axios.get('https://movies.yahoo.com.tw/movie_intheaters.html')
+      const response2 = await axios.get('https://movies.yahoo.com.tw/movie_intheaters.html?page=2')
+      const response3 = await axios.get('https://movies.yahoo.com.tw/movie_intheaters.html?page=3')
+      const response4 = await axios.get('https://movies.yahoo.com.tw/movie_intheaters.html?page=4')
+      const response5 = await axios.get('https://movies.yahoo.com.tw/movie_intheaters.html?page=5')
+      const response6 = await axios.get('https://movies.yahoo.com.tw/movie_intheaters.html?page=6')
+      const response7 = await axios.get('https://movies.yahoo.com.tw/movie_intheaters.html?page=7')
+      const response8 = await axios.get('https://movies.yahoo.com.tw/movie_intheaters.html?page=8')
+      const response9 = await axios.get('https://movies.yahoo.com.tw/movie_intheaters.html?page=9')
+      const response10 = await axios.get('https://movies.yahoo.com.tw/movie_intheaters.html?page=10')
+      // const response11 = await axios.get('https://movies.yahoo.com.tw/movie_intheaters.html?page=11')
+      // const response12 = await axios.get('https://movies.yahoo.com.tw/movie_intheaters.html?page=12')
+      // const response13 = await axios.get('https://movies.yahoo.com.tw/movie_intheaters.html?page=13')
+      // const response14 = await axios.get('https://movies.yahoo.com.tw/movie_intheaters.html?page=14')
+      // const response15 = await axios.get('https://movies.yahoo.com.tw/movie_intheaters.html?page=15')
 
-      const html = response.data + response2.data
+      const html =
+        response.data +
+        response2.data +
+        response3.data +
+        response4.data +
+        response5.data +
+        response6.data +
+        response7.data +
+        response8.data +
+        response9.data +
+        response10.data
+
       const $ = cheerio.load(html)
 
-      const matches = []
+      // const matches = []
       const reply = ''
-      $('.filmTitle').each(function () {
-        const name = $(this).find('a').text()
-        const url = $(this).find('a').attr('href')
-        const runTime = $(this).nextAll('.runtime').text()
-        const img = $(this).next().find('img').attr('src')
-        if (name.trim().toLowerCase().includes(event.message.text)) {
-          matches.push({ name, url, runTime, img })
-          const movieUrl = matches[0].url.split('/')[2]
-          const movieTime = matches[0].runTime.split(' ')[2]
-          const movieDate = matches[0].runTime.split(' ')[3]
-          const movieImg = matches[0].img
-          console.log(movieImg)
-          // console.log(movieDate)
-
+      $('.release_info').each(function () {
+        const name = $(this).find('.release_movie_name').find('a').eq(0).text().trim()
+        const engName = $(this).find('.release_movie_name').find('a').eq(1).text().trim()
+        const img = $(this).prev().find('img').attr('src')
+        const timeTableUrl = $(this).find('.btn_s_time').attr('href')
+        const movieDate = $(this).find('.release_movie_time').text()
+        const trailerUrl = $(this).find('.btn_s_vedio').attr('href')
+        if (name.trim().includes(event.message.text) || engName.trim().toLowerCase().includes(event.message.text.trim().toLowerCase())) {
+          // matches.push({ name, img, timeTableUrl, movieDate, trailerUrl })
           const flex = {
             type: 'bubble',
             hero: {
               type: 'image',
-              url: `${movieImg}`,
+              url: `${img}`,
               size: 'full',
-              aspectRatio: '20:13',
+              aspectRatio: '20:28',
               aspectMode: 'cover',
               action: {
                 type: 'uri',
@@ -62,43 +81,41 @@ bot.on('message', async event => {
               contents: [
                 {
                   type: 'text',
-                  text: `${matches[0].name}`,
+                  text: `${name}`,
                   weight: 'bold',
                   size: 'xl'
                 },
                 {
                   type: 'box',
                   layout: 'vertical',
-                  margin: 'lg',
+                  contents: [
+                    {
+                      type: 'text',
+                      text: `${engName}`,
+                      weight: 'bold',
+                      size: 'md'
+                    }
+                  ],
+                  flex: 5,
+                  margin: 'md',
+                  spacing: 'sm'
+                },
+                {
+                  type: 'box',
+                  layout: 'vertical',
+                  margin: 'md',
                   spacing: 'sm',
                   contents: [
                     {
                       type: 'box',
-                      layout: 'baseline',
-                      spacing: 'sm',
+                      layout: 'vertical',
                       contents: [
                         {
                           type: 'text',
                           text: `${movieDate}`,
-                          wrap: true,
-                          color: '#666666',
+                          flex: 5,
                           size: 'sm',
-                          flex: 5
-                        }
-                      ]
-                    },
-                    {
-                      type: 'box',
-                      layout: 'baseline',
-                      spacing: 'sm',
-                      contents: [
-                        {
-                          type: 'text',
-                          text: `${movieTime}`,
-                          wrap: true,
-                          color: '#666666',
-                          size: 'sm',
-                          flex: 5
+                          color: '#666666'
                         }
                       ]
                     }
@@ -117,13 +134,19 @@ bot.on('message', async event => {
                   height: 'sm',
                   action: {
                     type: 'uri',
-                    label: '時刻表查詢',
-                    uri: `http://www.atmovies.com.tw/movie/${movieUrl}/`
+                    label: '預告片',
+                    uri: `${trailerUrl}`
                   }
                 },
                 {
-                  type: 'spacer',
-                  size: 'sm'
+                  type: 'button',
+                  style: 'link',
+                  height: 'sm',
+                  action: {
+                    type: 'uri',
+                    label: '時刻表',
+                    uri: `${timeTableUrl}`
+                  }
                 }
               ],
               flex: 0
@@ -132,7 +155,7 @@ bot.on('message', async event => {
 
           const message = {
             type: 'flex',
-            altText: `${matches[0].name}時刻表`,
+            altText: `${name}時刻表`,
             contents: {
               type: 'carousel',
               contents: [flex]
@@ -141,11 +164,10 @@ bot.on('message', async event => {
 
           fs.writeFileSync('f.json', JSON.stringify(message, null, 2))
           event.reply(message)
-          // console.log(message)
         }
       })
-      console.log(reply)
-      event.reply(reply)
+      // console.log(reply)
+      // event.reply(reply)
     } catch (error) {
       console.log(error)
       event.reply('發生錯誤')

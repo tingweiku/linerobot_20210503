@@ -1,6 +1,6 @@
 {
   "type": "flex",
-  "altText": "一場大火之後 Collective 時刻表",
+  "altText": "魔戒首部曲：魔戒現身時刻表",
   "contents": {
     "type": "carousel",
     "contents": [
@@ -8,9 +8,9 @@
         "type": "bubble",
         "hero": {
           "type": "image",
-          "url": "http://www.atmovies.com.tw/photo101/fcro10706602/pm_fcro10706602_0002.jpg",
+          "url": "https://movies.yahoo.com.tw/x/r/w420/i/o/production/movies/April2021/0TbyK76jSCtdqDBEYPFN-757x1080.jpg",
           "size": "full",
-          "aspectRatio": "20:13",
+          "aspectRatio": "20:28",
           "aspectMode": "cover",
           "action": {
             "type": "uri",
@@ -23,43 +23,41 @@
           "contents": [
             {
               "type": "text",
-              "text": "一場大火之後 Collective ",
+              "text": "魔戒首部曲：魔戒現身",
               "weight": "bold",
               "size": "xl"
             },
             {
               "type": "box",
               "layout": "vertical",
-              "margin": "lg",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "The Lord of the Rings: The Fellowship of the Ring",
+                  "weight": "bold",
+                  "size": "md"
+                }
+              ],
+              "flex": 5,
+              "margin": "md",
+              "spacing": "sm"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "margin": "md",
               "spacing": "sm",
               "contents": [
                 {
                   "type": "box",
-                  "layout": "baseline",
-                  "spacing": "sm",
+                  "layout": "vertical",
                   "contents": [
                     {
                       "type": "text",
-                      "text": "上映日期：4/9/2021 ",
-                      "wrap": true,
-                      "color": "#666666",
+                      "text": "上映日期 ： 2021-04-29",
+                      "flex": 5,
                       "size": "sm",
-                      "flex": 5
-                    }
-                  ]
-                },
-                {
-                  "type": "box",
-                  "layout": "baseline",
-                  "spacing": "sm",
-                  "contents": [
-                    {
-                      "type": "text",
-                      "text": "片長：109分 ",
-                      "wrap": true,
-                      "color": "#666666",
-                      "size": "sm",
-                      "flex": 5
+                      "color": "#666666"
                     }
                   ]
                 }
@@ -78,13 +76,19 @@
               "height": "sm",
               "action": {
                 "type": "uri",
-                "label": "時刻表查詢",
-                "uri": "http://www.atmovies.com.tw/movie/fcro10706602/"
+                "label": "預告片",
+                "uri": "https://movies.yahoo.com.tw/video/%E9%AD%94%E6%88%92%E9%A6%96%E9%83%A8%E6%9B%B2-%E9%AD%94%E6%88%92%E7%8F%BE%E8%BA%AB-%E4%B8%AD%E6%96%87%E9%A0%90%E5%91%8A-065447550.html?movie_id=11358"
               }
             },
             {
-              "type": "spacer",
-              "size": "sm"
+              "type": "button",
+              "style": "link",
+              "height": "sm",
+              "action": {
+                "type": "uri",
+                "label": "時刻表",
+                "uri": "https://movies.yahoo.com.tw/movietime_result.html/id=11358"
+              }
             }
           ],
           "flex": 0
