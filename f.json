@@ -1,6 +1,6 @@
 {
   "type": "flex",
-  "altText": "魔戒首部曲：魔戒現身時刻表",
+  "altText": "人生檔案求刪除時刻表",
   "contents": {
     "type": "carousel",
     "contents": [
@@ -8,13 +8,13 @@
         "type": "bubble",
         "hero": {
           "type": "image",
-          "url": "https://movies.yahoo.com.tw/x/r/w420/i/o/production/movies/April2021/0TbyK76jSCtdqDBEYPFN-757x1080.jpg",
+          "url": "https://movies.yahoo.com.tw/x/r/w420/i/o/production/movies/April2021/pCWxiRPfYUKCzDkU1rag-756x1080.jpg",
           "size": "full",
           "aspectRatio": "20:28",
           "aspectMode": "cover",
           "action": {
             "type": "uri",
-            "uri": "http://linecorp.com/"
+            "uri": "https://movies.yahoo.com.tw/movieinfo_main/%E4%BA%BA%E7%94%9F%E6%AA%94%E6%A1%88%E6%B1%82%E5%88%AA%E9%99%A4-delete-history-11343"
           }
         },
         "body": {
@@ -23,7 +23,7 @@
           "contents": [
             {
               "type": "text",
-              "text": "魔戒首部曲：魔戒現身",
+              "text": "人生檔案求刪除",
               "weight": "bold",
               "size": "xl"
             },
@@ -33,7 +33,7 @@
               "contents": [
                 {
                   "type": "text",
-                  "text": "The Lord of the Rings: The Fellowship of the Ring",
+                  "text": "Delete History",
                   "weight": "bold",
                   "size": "md"
                 }
@@ -54,7 +54,7 @@
                   "contents": [
                     {
                       "type": "text",
-                      "text": "上映日期 ： 2021-04-29",
+                      "text": "上映日期 ： 2021-05-07",
                       "flex": 5,
                       "size": "sm",
                       "color": "#666666"
@@ -77,7 +77,7 @@
               "action": {
                 "type": "uri",
                 "label": "預告片",
-                "uri": "https://movies.yahoo.com.tw/video/%E9%AD%94%E6%88%92%E9%A6%96%E9%83%A8%E6%9B%B2-%E9%AD%94%E6%88%92%E7%8F%BE%E8%BA%AB-%E4%B8%AD%E6%96%87%E9%A0%90%E5%91%8A-065447550.html?movie_id=11358"
+                "uri": "https://movies.yahoo.com.tw/video/%E4%BA%BA%E7%94%9F%E6%AA%94%E6%A1%88%E6%B1%82%E5%88%AA%E9%99%A4-%E4%B8%AD%E6%96%87%E9%A0%90%E5%91%8A-013938584.html?movie_id=11343"
               }
             },
             {
@@ -87,7 +87,7 @@
               "action": {
                 "type": "uri",
                 "label": "時刻表",
-                "uri": "https://movies.yahoo.com.tw/movietime_result.html/id=11358"
+                "uri": "https://movies.yahoo.com.tw/movietime_result.html/id=11343"
               }
             }
           ],

@@ -31,11 +31,6 @@ bot.on('message', async event => {
       const response8 = await axios.get('https://movies.yahoo.com.tw/movie_intheaters.html?page=8')
       const response9 = await axios.get('https://movies.yahoo.com.tw/movie_intheaters.html?page=9')
       const response10 = await axios.get('https://movies.yahoo.com.tw/movie_intheaters.html?page=10')
-      // const response11 = await axios.get('https://movies.yahoo.com.tw/movie_intheaters.html?page=11')
-      // const response12 = await axios.get('https://movies.yahoo.com.tw/movie_intheaters.html?page=12')
-      // const response13 = await axios.get('https://movies.yahoo.com.tw/movie_intheaters.html?page=13')
-      // const response14 = await axios.get('https://movies.yahoo.com.tw/movie_intheaters.html?page=14')
-      // const response15 = await axios.get('https://movies.yahoo.com.tw/movie_intheaters.html?page=15')
 
       const html =
         response.data +
@@ -51,17 +46,15 @@ bot.on('message', async event => {
 
       const $ = cheerio.load(html)
 
-      // const matches = []
-      const reply = ''
       $('.release_info').each(function () {
         const name = $(this).find('.release_movie_name').find('a').eq(0).text().trim()
         const engName = $(this).find('.release_movie_name').find('a').eq(1).text().trim()
         const img = $(this).prev().find('img').attr('src')
-        const timeTableUrl = $(this).find('.btn_s_time').attr('href')
         const movieDate = $(this).find('.release_movie_time').text()
+        const timeTableUrl = $(this).find('.btn_s_time').attr('href')
         const trailerUrl = $(this).find('.btn_s_vedio').attr('href')
+        const movieUrl = $(this).find('.release_movie_name').find('a').eq(0).attr('href')
         if (name.trim().includes(event.message.text) || engName.trim().toLowerCase().includes(event.message.text.trim().toLowerCase())) {
-          // matches.push({ name, img, timeTableUrl, movieDate, trailerUrl })
           const flex = {
             type: 'bubble',
             hero: {
@@ -72,7 +65,7 @@ bot.on('message', async event => {
               aspectMode: 'cover',
               action: {
                 type: 'uri',
-                uri: 'http://linecorp.com/'
+                uri: `${movieUrl}`
               }
             },
             body: {
@@ -166,8 +159,6 @@ bot.on('message', async event => {
           event.reply(message)
         }
       })
-      // console.log(reply)
-      // event.reply(reply)
     } catch (error) {
       console.log(error)
       event.reply('發生錯誤')
