@@ -9,7 +9,11 @@ const data = []
 const getHTML = async () => {
   for (let i = 1; i <= 15; i++) {
     const response = await axios.get(`https://movies.yahoo.com.tw/movie_intheaters.html?page=${i}`)
-    data.push(cheerio.load(response.data))
+    const response2 = await axios.get('https://movies.yahoo.com.tw/movie_thisweek.html')
+
+    const html = response.data + response2.data
+
+    data.push(cheerio.load(html))
   }
   console.log('資料更新完成')
 }
