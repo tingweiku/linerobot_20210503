@@ -4,11 +4,11 @@
 
 # 使用說明
 1. 加入好友
-![images]('./images/S__94511106.jpg')
+![images](./images/S__94511106.jpg)
 
 2. 輸入電影名稱（中英文皆可）
-![images]('./images/S__94511108.jpg')
-![images]('./images/S__94511109.jpg')
+![images](./images/S__94511108.jpg)
+![images](./images/S__94511109.jpg)
 
 # 資料來源
-[yahoo 奇摩電影]('https://movies.yahoo.com.tw/movie_intheaters.html')
+[yahoo 奇摩電影](https://movies.yahoo.com.tw/movie_intheaters.html)
